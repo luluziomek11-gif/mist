@@ -47,8 +47,13 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.anims.play('player-down', true);
         } else {
             this.anims.stop();
-            // Optional: reset to idle frame based on last direction
-            // this.setFrame(1);
+            // Reset to the idle frame (first frame of the current animation row)
+            if (this.anims.currentAnim) {
+                const startFrame = this.anims.currentAnim.frames[0].frame.name;
+                this.setFrame(startFrame);
+            } else {
+                this.setFrame(0);
+            }
         }
     }
 }
