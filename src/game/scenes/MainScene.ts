@@ -14,9 +14,9 @@ export class MainScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.spritesheet('player', 'assets/player.png', { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet('ultron', 'assets/ultron.png', { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet('edith', 'assets/edith.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('player', 'assets/player.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('ultron', 'assets/ultron.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('edith', 'assets/edith.png', { frameWidth: 64, frameHeight: 64 });
         this.load.image('tiles', 'assets/tiles.png');
     }
 
@@ -64,28 +64,28 @@ export class MainScene extends Phaser.Scene {
     }
 
     private createAnimations(key: string) {
-        const framesPerRow = 3;
+        const framesPerRow = 9;
         this.anims.create({
             key: `${key}-down`,
-            frames: this.anims.generateFrameNumbers(key, { start: 0, end: 2 }),
+            frames: this.anims.generateFrameNumbers(key, { start: 1, end: 8 }),
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: `${key}-left`,
-            frames: this.anims.generateFrameNumbers(key, { start: framesPerRow, end: framesPerRow + 2 }),
+            frames: this.anims.generateFrameNumbers(key, { start: framesPerRow + 1, end: framesPerRow + 8 }),
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: `${key}-right`,
-            frames: this.anims.generateFrameNumbers(key, { start: framesPerRow * 2, end: framesPerRow * 2 + 2 }),
+            frames: this.anims.generateFrameNumbers(key, { start: framesPerRow * 2 + 1, end: framesPerRow * 2 + 8 }),
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: `${key}-up`,
-            frames: this.anims.generateFrameNumbers(key, { start: framesPerRow * 3, end: framesPerRow * 3 + 2 }),
+            frames: this.anims.generateFrameNumbers(key, { start: framesPerRow * 3 + 1, end: framesPerRow * 3 + 8 }),
             frameRate: 10,
             repeat: -1
         });

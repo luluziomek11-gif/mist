@@ -17,8 +17,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
 
         if (this.body) {
-            (this.body as Phaser.Physics.Arcade.Body).setSize(16, 16);
-            (this.body as Phaser.Physics.Arcade.Body).setOffset(8, 16);
+            (this.body as Phaser.Physics.Arcade.Body).setSize(24, 24);
+            (this.body as Phaser.Physics.Arcade.Body).setOffset(20, 36);
         }
 
         if (scene.input.keyboard) {
@@ -47,9 +47,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.anims.play('player-down', true);
         } else {
             this.anims.stop();
-            // Reset to the idle frame (first frame of the current animation row)
+            // Reset to the idle frame (frame 0 of the current animation row)
             if (this.anims.currentAnim) {
-                const startFrame = this.anims.currentAnim.frames[0].frame.name;
+                // The idle frame is one less than the start frame of walking
+                const startFrame = (this.anims.currentAnim.frames[0].frame.name as number) - 1;
                 this.setFrame(startFrame);
             } else {
                 this.setFrame(0);
